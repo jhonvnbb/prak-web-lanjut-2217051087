@@ -10,10 +10,7 @@
     <div class="bg-gray-800 shadow-xl rounded-xl p-10 max-w-5xl w-full flex flex-col md:flex-row items-center space-y-6 md:space-y-0 md:space-x-10 transform transition-all hover:shadow-2xl">
 
         <div class="flex-shrink-0 relative group">
-            <img class="rounded-full object-cover border-4 border-gray-700 shadow-lg group-hover:scale-105 transition-transform duration-300 ease-out" src="{{ asset('images/pp.jpg') }}" alt="Profile Picture" width="250" height="250">
-            <div class="absolute inset-0 rounded-full bg-black opacity-0 group-hover:opacity-70 flex items-center justify-center transition-opacity duration-300 ease-out">
-                <span class="text-white text-lg font-semibold">Change Photo</span>
-            </div>
+            <img class="rounded-full object-cover border-4 border-gray-700 shadow-lg group-hover:scale-105 transition-transform duration-300 ease-out" src="{{ asset('assets/img/pp.jpg') }}" alt="Profile Picture" width="250" height="250">
         </div>
 
         <div class="flex-1 text-white">
