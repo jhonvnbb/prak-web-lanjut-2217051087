@@ -13,36 +13,47 @@
         <form action="{{ route('user.store') }}" method="POST" class="space-y-6">
             @csrf 
             <div>
-                <label for="nama" class="block text-sm font-medium text-gray-700">Nama</label>
                 <div class="relative mt-1">
-                    <input type="text" placeholder="Nama" name="nama" id="nama" class="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm transition duration-300 ease-in-out hover:shadow-lg">
-                    <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                    <input type="text" placeholder="Nama" name="nama" id="nama" class="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-lg shadow-sm sm:text-sm transition duration-300 ease-in-out hover:shadow-lg">
+                    <div class="absolute inset-y-1.5 pl-3">
                         <i class="fas fa-user text-gray-400"></i>
                     </div>
+                    @foreach($errors->get('nama') as $error)
+                        <p class="mt-1 text-sm text-red-600 bg-red-100 border border-red-300 rounded-md p-2">{{ $error }}</p>
+                    @endforeach
                 </div>
             </div>
 
             <div>
-                <label for="npm" class="block text-sm font-medium text-gray-700">NPM</label>
                 <div class="relative mt-1">
-                    <input type="text" placeholder="NPM" name="npm" id="npm" class="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm transition duration-300 ease-in-out hover:shadow-lg">
-                    <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                    <input type="text" placeholder="NPM" name="npm" id="npm" class="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-lg shadow-sm sm:text-sm transition duration-300 ease-in-out hover:shadow-lg">
+                    <div class="absolute inset-y-1.5 pl-3">
                         <i class="fas fa-id-card text-gray-400"></i>
                     </div>
+                    @foreach($errors->get('npm') as $error)
+                        <p class="mt-1 text-sm text-red-600 bg-red-100 border border-red-300 rounded-md p-2">{{ $error }}</p>
+                    @endforeach
                 </div>
             </div>
 
             <div>
-                <label for="kelas" class="block text-sm font-medium text-gray-700">Kelas</label>
                 <div class="relative mt-1">
-                    <input type="text" placeholder="Kelas" name="kelas" id="kelas" class="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm transition duration-300 ease-in-out hover:shadow-lg">
-                    <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                    <select placeholder="Kelas" name="kelas_id" id="kelas_id" class="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-lg shadow-sm sm:text-sm transition duration-300 ease-in-out hover:shadow-lg">
+                        <option value="" disabled selected>Pilih kelas</option>
+                        @foreach ($kelas as $kelasItem)
+                        <option value="{{ $kelasItem->id }}">{{ $kelasItem->nama_kelas }}</option>
+                        @endforeach
+                    </select>
+                    <div class="absolute inset-y-1.5 pl-3">
                         <i class="fas fa-school text-gray-400"></i>
                     </div>
+                    @foreach($errors->get('kelas_id') as $error)
+                        <p class="mt-1 text-sm text-red-600 bg-red-100 border border-red-300 rounded-md p-2">{{ $error }}</p>
+                    @endforeach
                 </div>
             </div>
 
-            <button type="submit" class="w-full bg-gradient-to-r from-indigo-500 to-purple-600 text-white py-2 rounded-lg hover:from-indigo-600 hover:to-purple-700 focus:outline-none focus:ring-4 focus:ring-indigo-500 focus:ring-opacity-50 transition duration-300 ease-in-out transform hover:scale-105">
+            <button type="submit" class="w-full bg-gradient-to-r from-indigo-500 to-purple-600 text-white py-2 rounded-lg hover:from-indigo-600 hover:to-purple-700 transition duration-300 ease-in-out transform hover:scale-105">
                 <i class="fas fa-paper-plane mr-2"></i> Submit
             </button>
         </form>
