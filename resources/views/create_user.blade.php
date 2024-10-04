@@ -1,13 +1,18 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Create User</title>
-    @vite('resources/css/app.css')
-</head>
-<body class="bg-gray-300 flex items-center justify-center min-h-screen">
+    
+</head> -->
+<!-- <body class="bg-gray-300 flex items-center justify-center min-h-screen"> -->
 
+@extends('layouts.app')
+
+@section('content')
+
+<div class="bg-gray-300 flex items-center justify-center min-h-screen">
     <div class="bg-white p-8 rounded-xl shadow-xl w-full max-w-md transform transition-all hover:scale-105">
         <h1 class="text-3xl font-extrabold text-center mb-6 text-gray-900">Create User</h1>
         <form action="{{ route('user.store') }}" method="POST" class="space-y-6">
@@ -58,6 +63,9 @@
             </button>
         </form>
     </div>
+</div>
 
-</body>
-</html>
+@endsection
+
+<!-- </body> -->
+<!-- </html> -->
