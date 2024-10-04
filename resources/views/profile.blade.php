@@ -18,7 +18,7 @@
             <div class="space-y-4">
                 <h2 class="text-2xl font-semibold text-yellow-400">{{$nama}}</h2>
                 <p class="text-lg text-gray-300">{{$npm}}</p>
-                <p class="text-lg text-gray-300"><span class="font-medium">Kelas : </span>{{$kelas}}</p>
+                <p class="text-lg text-gray-300"><span class="font-medium">Kelas : </span>{{$nama_kelas ?? 'Kelas Tidak Ditemukan'}}</p>
                 <blockquote class="text-gray-400 text-lg italic border-l-4 pl-4 border-yellow-500 max-w-lg">
                     Embrace challenges as stepping stones to success. Your resilience defines you. Believe in your journey, stay focused, and conquer every obstacle. You've got this!
                 </blockquote>
