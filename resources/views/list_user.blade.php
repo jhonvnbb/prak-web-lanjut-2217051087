@@ -31,7 +31,21 @@
                                 <td class="py-4 px-6 text-center">
                                     <img class="h-12 w-12 rounded-full object-cover mx-auto" src="{{ asset($users->foto ?? 'assets/img/default.jpg') }}" alt="User Photo">
                                 </td>
-                                <td class="py-4 px-6 text-center"><a href="{{ route('user.show', $users->id) }}">Detail</a></td>
+                                <td class="py-4 px-6 text-center">
+                                    <a href="{{ route('user.show', $users->id) }}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full mx-1">
+                                        <i class="fas fa-eye"></i>
+                                    </a>
+                                    <a href="{{ route('user.edit', $users->id) }}" class="bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded-full mx-1">
+                                        <i class="fas fa-edit"></i>
+                                    </a>
+                                    <form action="{{ route('user.destroy', $users->id) }}" method="POST" class="inline-block">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-full mx-1" onclick="return confirm('Apakah Anda yakin ingin menghapus pengguna ini?')">
+                                            <i class="fas fa-trash-alt"></i>
+                                        </button>
+                                    </form>
+                                </td>
                             </tr>
                         @endforeach
                     @else
