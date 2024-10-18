@@ -10,15 +10,15 @@
     <div class="bg-gray-800 shadow-xl rounded-xl p-10 max-w-5xl w-full flex flex-col md:flex-row items-center space-y-6 md:space-y-0 md:space-x-10 transform transition-all hover:shadow-2xl">
 
         <div class="flex-shrink-0 relative group">
-            <img class="rounded-full object-cover border-4 border-gray-700 shadow-lg group-hover:scale-105 transition-transform duration-300 ease-out" src="{{ asset('assets/img/pp.jpg') }}" alt="Profile Picture" width="250" height="250">
+            <img class="rounded-full object-cover border-4 border-gray-700 shadow-lg group-hover:scale-105 transition-transform duration-300 ease-out" src="{{ asset($user->foto ?? 'assets/img/default.jpg') }}" alt="Profile Picture" width="250" height="250">
         </div>
 
         <div class="flex-1 text-white">
             <h1 class="text-5xl font-extrabold text-center md:text-left mb-6">My Profile</h1>
             <div class="space-y-4">
-                <h2 class="text-2xl font-semibold text-yellow-400">{{$nama}}</h2>
-                <p class="text-lg text-gray-300">{{$npm}}</p>
-                <p class="text-lg text-gray-300"><span class="font-medium">Kelas : </span>{{$nama_kelas ?? 'Kelas Tidak Ditemukan'}}</p>
+                <h2 class="text-2xl font-semibold text-yellow-400">{{$user -> nama}}</h2>
+                <p class="text-lg text-gray-300">{{$user ->npm}}</p>
+                <p class="text-lg text-gray-300"><span class="font-medium">Kelas : </span>{{$user -> nama_kelas ?? 'Kelas Tidak Ditemukan'}}</p>
                 <blockquote class="text-gray-400 text-lg italic border-l-4 pl-4 border-yellow-500 max-w-lg">
                     Embrace challenges as stepping stones to success. Your resilience defines you. Believe in your journey, stay focused, and conquer every obstacle. You've got this!
                 </blockquote>

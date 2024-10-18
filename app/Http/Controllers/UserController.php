@@ -52,11 +52,27 @@ class UserController extends Controller
         $validatedData = $request->validate([ 
             'nama' => 'required|string|max:255', 
             'npm' => 'required|string|max:255', 
-            'kelas_id' => 'required|exists:kelas,id', 
+            'kelas_id' => 'required|exists:kelas,id',
+            'foto' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]); 
+
+        if ($request->hasFile('foto')) {
+            $foto = $request->file('foto');
+            $fotoPath = $foto->move(('uploads/img'),$foto);
+            // $fotoPath = $foto->move(('uploads/img'), $foto->getClientOriginalName());
+        } else {
+            $fotoPath = null;
+        }
+
+        $this->userModel->create([
+            'nama' => $request->input('nama'),
+            'npm' => $request->input('npm'),
+            'kelas_id' => $request->input('kelas_id'),
+            'foto' => $fotoPath,
+        ]);
     
-        $user = $this->userModel->create($validatedData);
-        $user->load('kelas');
+        // $user = $this->userModel->create($validatedData);
+        // $user->load('kelas');
     
         // return view('profile', [
         //     'nama' => $user->nama,
@@ -64,6 +80,16 @@ class UserController extends Controller
         //     'nama_kelas' => $user->kelas->nama_kelas ?? 'Kelas tidak ditemukan', 
         // ]);
 
-        return redirect()->to('/user');
+        return redirect()->to('/user')->with('success', 'User berhasil ditambahkan');
+    }
+
+    public function show($id){
+        $user = $this->userModel->getUser($id);
+
+        $data = [
+            'title' => 'Profile',
+            'user' => $user,
+        ];
+        return view('profile', $data);
     }
 }
