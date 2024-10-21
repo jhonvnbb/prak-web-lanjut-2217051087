@@ -58,11 +58,12 @@ class UserController extends Controller
 
         if ($request->hasFile('foto')) {
             $foto = $request->file('foto');
-            $fotoPath = $foto->move(('uploads/img'),$foto);
-            // $fotoPath = $foto->move(('uploads/img'), $foto->getClientOriginalName());
+            $fotoName = time() . '_' . $foto->getClientOriginalName(); 
+            // Menyimpan file ke folder uploads/img
+            $fotoPath = $foto->move('uploads/img', $fotoName); 
         } else {
             $fotoPath = null;
-        }
+        }        
 
         $this->userModel->create([
             'nama' => $request->input('nama'),
@@ -80,7 +81,7 @@ class UserController extends Controller
         //     'nama_kelas' => $user->kelas->nama_kelas ?? 'Kelas tidak ditemukan', 
         // ]);
 
-        return redirect()->to('/user')->with('success', 'User berhasil ditambahkan');
+        return redirect()->to('/')->with('success', 'User berhasil ditambahkan');
     }
 
     public function show($id){
@@ -133,3 +134,4 @@ class UserController extends Controller
         return redirect()->to('/user')->with('success', 'User berhasil dihapus');
     }
 }
+

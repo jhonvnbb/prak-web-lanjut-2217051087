@@ -5,9 +5,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
 
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [UserController::class, 'index']) -> name('user.list');
 
 Route::get('/user/profile', [ProfileController::class, 'profile']);
 
