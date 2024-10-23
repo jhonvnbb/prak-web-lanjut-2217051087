@@ -14,10 +14,16 @@ class UserModel extends Model
 
     protected $fillable = [
         'nama',
-        'npm',
+        // 'npm',
         'kelas_id',
+        'i_p_k',
         'foto',
     ];
+
+    protected $casts = [
+        'i_p_k' => 'decimal:2',
+    ];
+    
 
     public function kelas()
     {

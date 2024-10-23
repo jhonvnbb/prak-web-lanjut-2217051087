@@ -28,7 +28,7 @@ class UserController extends Controller
     //     dd($data); 
     // }
 
-    public $userModel;
+    protected $userModel;
     public $kelas;
 
     public function __construct()
@@ -47,12 +47,14 @@ class UserController extends Controller
         return view('list_user', $data);
     }
 
-    public function store(UserRequest $request) 
-    { 
+    public function store(Request $request) 
+    {
+        
         $validatedData = $request->validate([ 
             'nama' => 'required|string|max:255', 
-            'npm' => 'required|string|max:255', 
+            // 'npm' => 'required|string|max:255', 
             'kelas_id' => 'required|exists:kelas,id',
+            'i_p_k' => 'required|numeric|between:0,4.00',
             'foto' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]); 
 
@@ -67,8 +69,9 @@ class UserController extends Controller
 
         $this->userModel->create([
             'nama' => $request->input('nama'),
-            'npm' => $request->input('npm'),
+            // 'npm' => $request->input('npm'),
             'kelas_id' => $request->input('kelas_id'),
+            'i_p_k' => $request->input('i_p_k'),
             'foto' => $fotoPath,
         ]);
     
@@ -115,8 +118,9 @@ class UserController extends Controller
         $user = UserModel::findOrFail($id);
 
         $user->nama = $request->nama;
-        $user->npm = $request->npm;
+        // $user->npm = $request->npm;
         $user->kelas_id = $request->kelas_id;
+        $user->i_p_k = $request->i_p_k;
         
         if($request->hasFile('foto')){
             $fileName = time() . '.' . $request->foto->extension();
