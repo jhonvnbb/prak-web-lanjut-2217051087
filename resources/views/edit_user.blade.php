@@ -33,7 +33,7 @@
             </div>
 
             <!-- NPM -->
-            <div>
+            <!-- <div>
                 <div class="relative mt-1">
                     <input type="text" placeholder="NPM" name="npm" id="npm" value="{{ old('npm', $user->npm) }}" class="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-lg shadow-sm sm:text-sm transition duration-300 ease-in-out hover:shadow-lg">
                     <div class="absolute inset-y-1.5 pl-3">
@@ -43,7 +43,7 @@
                         <p class="mt-1 text-sm text-red-600 bg-red-100 border border-red-300 rounded-md p-2">{{ $error }}</p>
                     @endforeach
                 </div>
-            </div>
+            </div> -->
 
             <!-- Kelas -->
             <div>
@@ -60,6 +60,18 @@
                         <i class="fas fa-school text-gray-400"></i>
                     </div>
                     @foreach($errors->get('kelas_id') as $error)
+                        <p class="mt-1 text-sm text-red-600 bg-red-100 border border-red-300 rounded-md p-2">{{ $error }}</p>
+                    @endforeach
+                </div>
+            </div>
+
+            <div>
+                <div class="relative mt-1">
+                    <input type="text" placeholder="ipk" name="i_p_k" id="i_p_k" value="{{ old('i_p_k', $user->ipk) }}" class="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-lg shadow-sm sm:text-sm transition duration-300 ease-in-out hover:shadow-lg">
+                    <div class="absolute inset-y-1.5 pl-3">
+                        <i class="fas fa-id-card text-gray-400"></i>
+                    </div>
+                    @foreach($errors->get('i_p_k') as $error)
                         <p class="mt-1 text-sm text-red-600 bg-red-100 border border-red-300 rounded-md p-2">{{ $error }}</p>
                     @endforeach
                 </div>

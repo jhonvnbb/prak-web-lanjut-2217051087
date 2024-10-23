@@ -25,6 +25,7 @@ class UserRequest extends FormRequest
             'nama' => 'required',
             'npm' => 'required',
             'kelas_id' => 'required',
+            'i_p_k' => 'required',  
         ];
     }
 }
