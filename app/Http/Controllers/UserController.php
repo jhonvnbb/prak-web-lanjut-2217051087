@@ -28,7 +28,7 @@ class UserController extends Controller
     //     dd($data); 
     // }
 
-    public $userModel;
+    protected $userModel;
     public $kelas;
 
     public function __construct()
@@ -47,27 +47,31 @@ class UserController extends Controller
         return view('list_user', $data);
     }
 
-    public function store(UserRequest $request) 
-    { 
+    public function store(Request $request) 
+    {
+        
         $validatedData = $request->validate([ 
             'nama' => 'required|string|max:255', 
-            'npm' => 'required|string|max:255', 
+            // 'npm' => 'required|string|max:255', 
             'kelas_id' => 'required|exists:kelas,id',
+            'i_p_k' => 'required|numeric|between:0,4.00',
             'foto' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]); 
 
         if ($request->hasFile('foto')) {
             $foto = $request->file('foto');
-            $fotoPath = $foto->move(('uploads/img'),$foto);
-            // $fotoPath = $foto->move(('uploads/img'), $foto->getClientOriginalName());
+            $fotoName = time() . '_' . $foto->getClientOriginalName(); 
+            // Menyimpan file ke folder uploads/img
+            $fotoPath = $foto->move('uploads/img', $fotoName); 
         } else {
             $fotoPath = null;
-        }
+        }        
 
         $this->userModel->create([
             'nama' => $request->input('nama'),
-            'npm' => $request->input('npm'),
+            // 'npm' => $request->input('npm'),
             'kelas_id' => $request->input('kelas_id'),
+            'i_p_k' => $request->input('i_p_k'),
             'foto' => $fotoPath,
         ]);
     
@@ -80,7 +84,7 @@ class UserController extends Controller
         //     'nama_kelas' => $user->kelas->nama_kelas ?? 'Kelas tidak ditemukan', 
         // ]);
 
-        return redirect()->to('/user')->with('success', 'User berhasil ditambahkan');
+        return redirect()->to('/')->with('success', 'User berhasil ditambahkan');
     }
 
     public function show($id){
@@ -114,8 +118,9 @@ class UserController extends Controller
         $user = UserModel::findOrFail($id);
 
         $user->nama = $request->nama;
-        $user->npm = $request->npm;
+        // $user->npm = $request->npm;
         $user->kelas_id = $request->kelas_id;
+        $user->i_p_k = $request->i_p_k;
         
         if($request->hasFile('foto')){
             $fileName = time() . '.' . $request->foto->extension();
@@ -133,3 +138,4 @@ class UserController extends Controller
         return redirect()->to('/user')->with('success', 'User berhasil dihapus');
     }
 }
+

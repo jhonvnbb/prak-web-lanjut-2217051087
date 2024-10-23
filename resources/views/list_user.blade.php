@@ -14,8 +14,9 @@
                     <tr class="bg-gradient-to-r from-indigo-500 to-purple-600 text-white uppercase text-xs font-semibold tracking-wider">
                         <th class="py-4 px-6 text-center border-b border-gray-200">ID</th>
                         <th class="py-4 px-6 text-center border-b border-gray-200">Nama</th>
-                        <th class="py-4 px-6 text-center border-b border-gray-200">NPM</th>
+                        <!-- <th class="py-4 px-6 text-center border-b border-gray-200">NPM</th> -->
                         <th class="py-4 px-6 text-center border-b border-gray-200">Kelas</th>
+                        <th class="py-4 px-6 text-center border-b border-gray-200">IPK</th>
                         <th class="py-4 px-6 text-center border-b border-gray-200">Foto</th>
                         <th class="py-4 px-6 text-center border-b border-gray-200">Aksi</th>
                     </tr>
@@ -26,8 +27,9 @@
                             <tr class="border-b border-gray-200 bg-white hover:bg-indigo-50 transition duration-300 ease-in-out">
                                 <td class="py-4 px-6 text-center">{{ $users->id }}</td>
                                 <td class="py-4 px-6 text-center">{{ $users->nama }}</td>
-                                <td class="py-4 px-6 text-center">{{ $users->npm }}</td>
+                                <!-- <td class="py-4 px-6 text-center">{{ $users->npm }}</td> -->
                                 <td class="py-4 px-6 text-center">{{ $users->nama_kelas }}</td>
+                                <td class="py-4 px-6 text-center">{{ number_format($users->i_p_k, 2) }}</td>
                                 <td class="py-4 px-6 text-center">
                                     <img class="h-12 w-12 rounded-full object-cover mx-auto" src="{{ asset($users->foto ?? 'assets/img/default.jpg') }}" alt="User Photo">
                                 </td>
